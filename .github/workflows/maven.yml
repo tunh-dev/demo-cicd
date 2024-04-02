@@ -1,7 +1,7 @@
 name: Java CI
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 jobs:
   buildImage:
     runs-on: ubuntu-latest
@@ -26,4 +26,4 @@ jobs:
         destination-github-username: 'tunh-dev'
         destination-repository-name: 'demo-cicd'
         user-email: 'nhtu0805@gmail.com'
-        target-branch: 'master'
+        target-branch: 'main'
