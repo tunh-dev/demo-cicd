@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>app1</artifactId>
+	<version>0.0.2</version>
+	<name>app1</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+<!--		<server.host>app1.brownstar.icu</server.host>-->
+		<docker.image.registry>registry1.brownstar.icu/registry</docker.image.registry>
+		<docker.image.name>${docker.image.registry}/${project.artifactId}:${project.version}</docker.image.name>
+		<!--suppress UnresolvedMavenProperty -->
+		<docker.registry.username>${DOCKER_REGISTRY_USERNAME}</docker.registry.username>
+		<!--suppress UnresolvedMavenProperty -->
+		<docker.registry.password>${DOCKER_REGISTRY_PASSWORD}</docker.registry.password>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>${docker.image.name}</name>
+						<env>
+							<BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+							<BPL_JVM_THREAD_COUNT>62</BPL_JVM_THREAD_COUNT>
+							<BPE_DELIM_JAVA_TOOL_OPTIONS xml:space="preserve"> </BPE_DELIM_JAVA_TOOL_OPTIONS>
+							<BPE_APPEND_JAVA_TOOL_OPTIONS>-Xss256K -XX:ReservedCodeCacheSize=60M</BPE_APPEND_JAVA_TOOL_OPTIONS>
+						</env>
+						<publish>true</publish>
+					</image>
+					<docker>
+						<publishRegistry>
+							<username>${docker.registry.username}</username>
+							<password>${docker.registry.password}</password>
+						</publishRegistry>
+					</docker>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
