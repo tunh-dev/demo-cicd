@@ -1,0 +1,32 @@
+namespace: docker-registry
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - registry.example.com
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "30720m"
+  tls:
+    - secretName: docker-registry-prod
+      hosts:
+        - registry.example.com
+
+storage: s3
+
+secrets:
+  htpasswd: |-
+    username:password
+  s3:
+    accessKey: ""
+    secretKey: ""
+
+s3:
+  region: reg-region
+  regionEndpoint: reg-region.digitaloceanspaces.com
+  secure: true
+  bucket: bucket-name
+  
+image:
+  tag: 2.7.1
