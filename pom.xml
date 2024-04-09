@@ -10,13 +10,13 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>app1</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.1</version>
 	<name>app1</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 <!--		<server.host>app1.brownstar.icu</server.host>-->
-		<docker.image.registry>brownstaricu/registry</docker.image.registry>
+		<docker.image.registry>registry.brownstar.icu/registry</docker.image.registry>
 		<docker.image.name>${docker.image.registry}/${project.artifactId}:${project.version}</docker.image.name>
 		<!--suppress UnresolvedMavenProperty -->
 		<docker.registry.username>${DOCKER_REGISTRY_USERNAME}</docker.registry.username>
