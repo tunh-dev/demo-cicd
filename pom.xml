@@ -34,6 +34,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-transport-file</artifactId>
+			<version>1.4.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-transport-wagon</artifactId>
+			<version>1.4.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -60,8 +73,8 @@
 					</image>
 					<docker>
 						<publishRegistry>
-							<username>${docker.registry.username}</username>
-							<password>${docker.registry.password}</password>
+							<username>nhtu0805@gmail.com</username>
+							<password>Nhtu1873@@</password>
 						</publishRegistry>
 					</docker>
 				</configuration>
